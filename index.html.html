@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For the love of my life ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background: #120012;
+    color: white;
+}
+
+/* PASSWORD SCREEN */
+#passwordScreen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #4b004b, #8b005d);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    text-align: center;
+}
+
+#passwordScreen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+}
+
+#passwordScreen input {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 15px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+#passwordScreen button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #ff69b4;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#error {
+    margin-top: 10px;
+    color: #ffd6f6;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: url("./amanda1.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(139,0,75,0.6), rgba(75,0,130,0.7));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+}
+
+.nicknames {
+    color: #ffd6f6;
+    margin-top: 10px;
+}
+
+.section {
+    padding: 70px 20px;
+    background: linear-gradient(to bottom, #1a001a, #330033);
+    text-align: center;
+}
+
+.section h2 {
+    font-family: 'Playfair Display', serif;
+    color: #ffb6f9;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.gallery img {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* CONFETTI */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: fall linear infinite;
+    z-index: 9999;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+.footer {
+    padding: 30px;
+    background: #140014;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen">
+    <h2>Only My Special Person Can Enter ❤️</h2>
+    <p>Hint: One of the names I call you...</p>
+    <input type="password" id="passwordInput" placeholder="Enter Password">
+    <button onclick="checkPassword()">Unlock</button>
+    <div id="error"></div>
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="./romantic.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" style="display:none;">
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Amanda Kusiwaa Anyimadu</h1>
+        <div class="nicknames">
+            Babe • Akus • Ammy • Mandy • Spiderwoman 🕷️❤️
+        </div>
+        <p>
+            Today you wear more than a lab coat…  
+            You wear brilliance, strength, and destiny.
+        </p>
+    </div>
+</div>
+
+<div class="section">
+    <h2>To My Beautiful MLSD Queen</h2>
+    <p>
+        My Akus…  
+        I have seen your sacrifices, your strength, your silent battles.
+        <br><br>
+        Your white coat is proof that purpose chose you.
+        <br><br>
+        The world just gained an incredible Medical Laboratory Scientist.
+        And I get to love the woman behind the coat.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Our Beautiful Moments</h2>
+    <div class="gallery">
+        <img src="./amanda2.jpg">
+        <img src="./amanda3.jpg">
+        <img src="./amanda4.jpg">
+    </div>
+</div>
+
+<div class="section">
+    <h2>My Promise</h2>
+    <p>
+        I promise to stand beside you —
+        through every lab session,
+        every challenge,
+        every victory.
+        <br><br>
+        Dr. Amanda Loading... 👩🏾‍⚕️✨
+    </p>
+</div>
+
+<div class="footer">
+    With All My Love ❤️ — Kwamus
+</div>
+
+</div>
+
+<script>
+// PASSWORD
+function checkPassword() {
+    const password = document.getElementById("passwordInput").value;
+    if (password.toLowerCase() === "akus") {
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.getElementById("bgMusic").play();
+        startConfetti();
+    } else {
+        document.getElementById("error").innerText = "Try again my love ❤️";
+    }
+}
+
+// CONFETTI
+function startConfetti() {
+    setInterval(() => {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.backgroundColor =
+            ["#ff69b4", "#ff1493", "#ffb6c1", "#ffc0cb", "#da70d6"][Math.floor(Math.random()*5)];
+
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 5000);
+    }, 200);
+}
+</script>
+
+</body>
+</html>
+
